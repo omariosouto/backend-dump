@@ -1,0 +1,11 @@
+{
+  "name": "backend-dump",
+  "workspaces": [
+    "examples/*",
+    "commons/*"
+  ],
+  "scripts": {
+    "server": "npm exec --workspace=company-server",
+    "dev:server": "npm run server -- npm run dev"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@omariosouto-backend-dump/01-working-with-money",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.tsx",
+  "scripts": {
+    "start": "tsx ./index.tsx",
+    "dev": "tsx watch ./index.tsx"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/dinero.js": "^1.9.4",
+    "currency.js": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "tsx": "^4.7.1"
+  }
+}
