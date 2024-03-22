@@ -17,14 +17,5 @@ const AMOUNT_IN_CENTS = "20000"; // R$ 100,00
 const money = BRL(AMOUNT_IN_CENTS);
 
 console.log(`Amount: ${money.toString()}`);
-console.log(`${ISS}% of ${money.format()} is: ${money.multiply(toPercent(ISS)).toString()}`);
-console.log(`${ISS}% of ${AMOUNT_IN_CENTS} is: ${Number(BigInt(AMOUNT_IN_CENTS)) * toPercent(ISS)}`);
-
-
-
-
-function toPercent(value: number | string) {
-  const valueStr = typeof value === "number" ? value.toFixed(2) : String(value);
-
-  return Number(valueStr) / 100;
-}
+console.log(`${ISS}% of ${money.format()} is: ${money.multiply(ISS / 100).toString()}`);
+console.log(`${ISS}% of ${AMOUNT_IN_CENTS} is: ${Number(BigInt(AMOUNT_IN_CENTS)) * (ISS / 100)}`);
