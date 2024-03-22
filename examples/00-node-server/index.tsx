@@ -9,9 +9,12 @@ fastify.get('/', function (request, response) {
   response.send({ hello: 'world' });
 })
 
-const PORT = process.env.HTTP_PORT as unknown as number || 3000;
+const PORT = 3000;
 console.log('PORT', PORT);
-fastify.listen({ port: PORT }, function (err, address) {
+fastify.listen({
+  port: PORT,
+  host: "0.0.0.0",
+}, function (err, address) {
   console.log(`server listening on ${address}`)
   if (err) {
     fastify.log.error(err)
