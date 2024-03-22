@@ -6,7 +6,7 @@ const fastify = Fastify({
 
 // Declare a route
 fastify.get('/', function (request, response) {
-  response.send({ hello: 'world' });
+  response.send({ hello: 'world!!!' });
 })
 
 const PORT = 3000;
