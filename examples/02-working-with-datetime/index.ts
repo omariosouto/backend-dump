@@ -1,28 +1,28 @@
-import { now, fromDate, format, add } from "./datetime";
+import { time } from "./time";
 
 console.log("[Working with date/time]");
 
-console.log("now\n", now());
+console.log("now\n", time.now());
 console.log("\n");
 
-console.log("fromDate\n", fromDate('2018-04-13 19:18'));
+console.log("fromDate\n", time.fromDate('2018-04-13 19:18'));
 console.log("\n");
 
 
-console.log("format\n", format('2018-04-13 19:18', "DD-MM-YYYY"));
+console.log("format\n", time.format('2018-04-13 19:18', "DD-MM-YYYY"));
 console.log("\n");
 
 console.log(
   "add",
   "\n",
-  fromDate('2000-12-01 00:00'),
+  time.fromDate('2000-12-01 00:00'),
   "\n",
   "Day: ",
-  add(fromDate('2000-12-01 00:00'), 1, "day"),
+  time.add(time.fromDate('2000-12-01 00:00'), 1, "day"), // 2000-12-02 00:00
   "\n",
   "Month: ",
-  add(fromDate('2000-12-01 00:00'), 1, "month"),
+  time.add(time.fromDate('2000-12-01 00:00'), 1, "month"), // 2001-01-01 00:00
   "\n",
   "Year: ",
-  add(fromDate('2000-12-01 00:00'), 2, "year"),
+  time.add(time.fromDate('2000-12-01 00:00'), 2, "year"), // 2002-12-01 00:00
 );

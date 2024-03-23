@@ -5,6 +5,13 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 dayjs.extend(isLeapYear as any) // use plugin
 
+export const time = {
+  now,
+  fromDate,
+  format,
+  add,
+};
+
 export function now() {
   return dayjs().utc().format();
 }

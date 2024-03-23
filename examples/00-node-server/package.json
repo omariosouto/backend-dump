@@ -6,7 +6,9 @@
   "scripts": {
     "start": "tsx ./index.tsx",
     "dev": "tsx watch ./index.tsx",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:stress": "artillery run -o report.json ./test-stress.yml",
+    "test:stress:view": "artillery report report.json && npx http-server -c-1 --port=8081"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
+    "artillery": "^2.0.8",
     "tsx": "^4.7.1"
   }
 }
