@@ -1,21 +1,13 @@
-import currency from "currency.js";
+import { money } from "./money";
 
 console.log("[Working with money]");
 
-var BRL = value => currency(value, { symbol: "R$", separator: ".", decimal: ",", fromCents: true });
 
+const BALANCE = "100"; // In cents
 
-// const ISS = 2.1; // 2.1%
-const ISS = 2.1111; // 2.1111%%
-// const ISS = 2; // 2%
-// const ISS = "2.10"; // 2%
-// const ISS = "10"; // 10%
-// const ISS = "50"; // 50%
-
-const AMOUNT_IN_CENTS = "20000"; // R$ 100,00
-
-const money = BRL(AMOUNT_IN_CENTS);
-
-console.log(`Amount: ${money.toString()}`);
-console.log(`${ISS}% of ${money.format()} is: ${money.multiply(ISS / 100).toString()}`);
-console.log(`${ISS}% of ${AMOUNT_IN_CENTS} is: ${Number(BigInt(AMOUNT_IN_CENTS)) * (ISS / 100)}`);
+const balance = money.format(BALANCE, "BRL");
+console.log(`Balance: ${balance}`);
+const balanceInCents = money.toCents(balance);
+console.log(`Balance in cents: ${balanceInCents}`);
+const add = money.add(balance, "100", "BRL");
+console.log(`${balance} + ${money.format("100", "BRL")}: ${add}`);
