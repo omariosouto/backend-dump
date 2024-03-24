@@ -1,0 +1,18 @@
+{
+  "name": "@omariosouto-backend-dump/03-algorithms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsx ./index.ts",
+    "dev": "tsx watch ./index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "tsx": "^4.7.1"
+  }
+}

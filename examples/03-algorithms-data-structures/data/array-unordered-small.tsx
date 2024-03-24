@@ -1,0 +1,1 @@
+export const array = [14,13,16,17,19,20];
