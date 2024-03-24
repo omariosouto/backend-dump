@@ -1,4 +1,4 @@
-import { array } from "../data/array-unordered-small";
+import { array } from "../data/array-numbers-unordered-small.tsx";
 export const FLAG = "quick-sort";
 
 
