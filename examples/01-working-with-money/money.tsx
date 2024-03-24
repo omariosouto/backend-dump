@@ -35,7 +35,12 @@ export const money = {
     return currencyJS(value).value;
   },
   add(value1: string, value2: string, currency: keyof typeof currencyConfigByCurrency) {
-    console.log(value2);
-    return currencyJS(value1, currencyConfigByCurrency[currency]).add(value2).format();
+    const baseValue = currencyJS(value1.replace(",", "."), currencyConfigByCurrency[currency]).intValue;
+    const valueToAdd = currencyJS(value2.replace(",", "."), currencyConfigByCurrency[currency]).intValue;
+    return currencyJS(baseValue, currencyConfigByCurrency[currency]).add(valueToAdd).format();
+  },
+  multiply(value1: string, value2: string, currency: keyof typeof currencyConfigByCurrency) {
+    const baseValue = currencyJS(value1.replace(",", "."), currencyConfigByCurrency[currency]).intValue;
+    return currencyJS(baseValue, currencyConfigByCurrency[currency]).multiply(value2).format();
   }
 };
