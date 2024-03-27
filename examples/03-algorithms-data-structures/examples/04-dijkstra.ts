@@ -11,61 +11,68 @@ A -2-> C -> B
 
 const GRAPH = {
   A: {
-    C: 2,
-    D: 4,
+    B: 6,
+    D: 1,
   },
   B: {
-
-  },
-  C: {
-    B: 10,
   },
   D: {
-    C: 2,
-    B: 1,
+    E: 1,
+    B: 2,
+  },
+  E: {
+
   },
 }
 
 
-function djikstra(graph, from, to) {
-  const unvisited = Queue(Object.keys(graph));
-  const visited = Queue();
+function dijkstra(graph, from, to) {
+  // Create a distances object that holds every node
+  let distances = {};
+  for (let node in graph) {
+    distances[node] = Infinity;
+  }
+  distances[from] = 0;
 
-  const tentativeDistance = Object.keys(graph).reduce((_tentativeDistance, node) => {
-    const isStartNode = node === from;
-    return {
-      ..._tentativeDistance,
-      [node]: {
-        shortestDistance: isStartNode ? 0 : Infinity,
-        previousNode: undefined,
-      },
+  // Create an object for tracking the path
+  let prev = {};
+
+  // Process nodes using a priority queue based on distance
+  let pq = [{ node: from, distance: 0 }];
+  while (pq.length > 0) {
+    // Sort the pq based on distance
+    pq.sort((a, b) => a.distance - b.distance);
+    let current = pq.shift() as {
+      node: any;
+      distance: number;
     };
-  }, {});
 
-  while(unvisited.get() >= visited.get()) {
-    const activeNode = unvisited.dequeue() as string;
-    const queue = Queue(Object.keys(GRAPH[activeNode]));
-
-    while(queue.get().length > 0) {
-      const node = queue.dequeue() as string;
-
-      const shortestDistanceToNode = tentativeDistance[node].shortestDistance;
-      const shortestDistancePrevious = tentativeDistance[node].previousNode;
-      const distanceFromActiveNodeToNode = graph[activeNode][node];
-      if(shortestDistanceToNode === Infinity) {
-        tentativeDistance[node].shortestDistance = graph[activeNode][node];
-        tentativeDistance[node].previousNode = activeNode;
-      }
-      if(shortestDistanceToNode !== Infinity) {
-        // TODO: Understand the criteria to update the values
-        console.log(node, shortestDistanceToNode, shortestDistancePrevious);
+    // Visit each neighbor of the current node
+    let neighbors = graph[current.node];
+    for (let neighbor in neighbors) {
+      let newDistance = current.distance + neighbors[neighbor];
+      // If a shorter path is found
+      if (newDistance < distances[neighbor]) {
+        distances[neighbor] = newDistance;
+        prev[neighbor] = current.node;
+        pq.push({ node: neighbor, distance: newDistance });
       }
     }
-    
-    visited.enqueue(activeNode);
   }
 
-  console.log(tentativeDistance);
+  // Reconstruct the path from 'from' to 'to'
+  let path: unknown[] = [];
+  for (let at = to; at !== undefined; at = prev[at]) {
+    path.push(at);
+  }
+  path.reverse();
+
+  // If the path does not start with the 'from' node, then no path exists
+  if (path[0] !== from) {
+    return { distance: "Infinity", path: "No path" };
+  }
+
+  return { distance: distances[to], path: path };
 }
 
-djikstra(GRAPH, "A", "B");
+console.log(dijkstra(GRAPH, "A", "B"));
