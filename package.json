@@ -7,5 +7,9 @@
   "scripts": {
     "server": "npm exec --workspace=company-server",
     "dev:server": "npm run server -- npm run dev"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "prisma": "^5.13.0"
   }
 }

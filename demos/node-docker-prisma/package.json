@@ -1,0 +1,23 @@
+{
+  "name": "docker-prisma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "docker-compose up --build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prebuild": "npm run db:migration",
+    "db:admin": "prisma studio",
+    "db:migration": "prisma generate",
+    "db:push": "prisma db push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "express": "^4.19.2",
+    "prisma": "^5.13.0"
+  }
+}
