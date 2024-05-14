@@ -8,7 +8,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@protocols/*": ["../protocols/*"]
+      "@config": ["./src/config.ts"],
+      "@src/*": ["./src/*"],
+      "@protocols/*": ["./protocols/*"]
     }
   }
 }
