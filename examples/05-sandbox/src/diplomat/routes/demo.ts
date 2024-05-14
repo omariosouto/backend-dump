@@ -6,7 +6,15 @@ export const routes: RouteHandler[] = [
   {
     path: "/",
     method: "GET",
-    async handler() {
+    async handler({ dbPrisma }) {
+      const output = await dbPrisma().post.findFirstOrThrow({
+        where: {
+          description: {
+            contains: "inimigo"
+          }
+        }
+      });
+
       return {
         body: adapterDemo.modelDemoHelloWorldToWire(controllerDemo.helloWorld()),
         status: 200,
