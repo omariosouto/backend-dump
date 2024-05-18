@@ -26,5 +26,14 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     restart: unless-stopped
 
+  redis:
+    container_name: container-redis
+    image: bitnami/redis:latest
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PASSWORD: 12345678
+    restart: unless-stopped
+
 volumes:
   postgres-data:

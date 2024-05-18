@@ -2,10 +2,19 @@ import express, { Response } from "express";
 import bodyParser from "body-parser";
 import { routes } from "./diplomat/httpServer";
 import { PrismaClient } from "@prisma/client";
-import { env } from "@config";
-import { ZodError } from "zod";
+import { env } from "@src/config/config";
 import { isSchemaError } from "@protocols/schema";
 import { isDbPrismaError, isDbPrismaNotFoundError } from "@protocols/prisma";
+import { redis } from "./db/redis";
+
+(async () => {
+  console.log("aloo");
+  if(await redis.get("cache-key")) {
+    console.log("Cache hit", await redis.get("cache-key"));
+  }
+  // add cache in redis that expires in 10 seconds
+  await redis.set("cache-key", "cache-value", "EX", 10);
+})();
 
 const app = express();
 

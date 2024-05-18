@@ -1,5 +1,6 @@
 import { s } from "@protocols/schema";
 import dotenv from "dotenv";
+import "./money";
 dotenv.config();
 
 const EnvironmentSchema = s.object({
