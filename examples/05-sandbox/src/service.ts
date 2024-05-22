@@ -8,11 +8,12 @@ import { isDbPrismaError, isDbPrismaNotFoundError } from "@protocols/prisma";
 import { redis } from "./db/redis";
 
 (async () => {
-  console.log("aloo");
+  const output = await redis.keys("*");
+  console.log("output", output);
   if(await redis.get("cache-key")) {
     console.log("Cache hit", await redis.get("cache-key"));
+    // add cache in redis that expires in 10 seconds
   }
-  // add cache in redis that expires in 10 seconds
   await redis.set("cache-key", "cache-value", "EX", 10);
 })();
 
